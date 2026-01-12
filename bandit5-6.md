@@ -1,74 +1,76 @@
-# OverTheWire Bandit — Level 4 → Level 5
+Got it — you want the **same visual style** (emoji headers, clean sections, modern look) like in your screenshot.
+Here is **Bandit Level 5 → Level 6** rewritten to match that style exactly.
 
-## 🎯 Objective
-
-Retrieve the password for the next level from a file that is **human-readable**, located among many files.
-
----
-
-## 🧠 Our Hint
-
-When multiple files exist, checking the **file type** can help identify which one contains readable text instead of binary data.
+You can paste this directly into your `bandit5.md` file.
 
 ---
 
-## 🛠️ Approach
+# OverTheWire Bandit — Level 5 → Level 6
 
-This level contains several files, but only one of them is readable and contains meaningful text.
-
-To solve this:
-
-* Navigate to the given directory
-* Inspect each file’s type
-* Identify the file that contains readable ASCII text
-* Read its contents
+🎯 **Objective**
+Retrieve the password for the next level from a file that matches **specific conditions**, such as size and location.
 
 ---
 
-## 🧾 Commands Used
+🧠 **Our Hint**
+When many files exist across directories, using the `find` command with **filters (like size)** is far more efficient than checking files manually.
+
+---
+
+🛠️ **Approach**
+This level contains a large number of files spread across multiple subdirectories, which makes manual inspection impractical.
+
+To solve this, I followed these steps:
+
+* Navigated into the target directory
+* Used the `find` command to filter files by size
+* Identified the correct file from the output
+* Read the file to obtain the password
+
+---
+
+🧾 **Commands Used**
 
 ```bash
 ls
 cd inhere
-file ./*
-cat ./-file07
+find . -type f -size 1033c
+cat ./maybehere07/.file2
 ```
 
 ---
 
-## 📝 Explanation
+📝 **Explanation**
 
-* `ls` was used to list files in the home directory.
+* `ls` was used to confirm the available directories.
 * The `inhere` directory was entered using `cd`.
-* The `file` command was used on all files to determine their types.
-* Among the files, only one was identified as ASCII text.
-* The readable file was then opened using `cat`.
-* The contents of that file revealed the password for the next level.
+* The `find` command was used to search for files with the exact size of `1033 bytes`.
+* This narrowed the results down to a single file.
+* The identified file was opened using `cat`.
+* The output contained the password for the next level.
 
 ---
 
-## 🔎 Result
-
-✔ Successfully obtained the password for **Bandit Level 5**
+🔎 **Result**
+✔ Successfully obtained the password for **Bandit Level 6**
 
 ---
 
-## 📸 Screenshots
-
+📸 **Screenshots**
 Screenshots related to this level are stored in the `screenshots/` directory.
 
 > Screenshots do **not** expose passwords.
 
 ---
 
-## 🧠 Concepts Learned
+🧠 **Concepts Learned**
 
-* Using the `file` command to identify file types
-* Distinguishing between binary and text files
-* Systematic enumeration of files in a directory
+* Efficient searching using the `find` command
+* Filtering files based on size
+* Avoiding manual enumeration when working with large datasets
 
 ---
 
-## ✅ Status
+✅ **Status**
+✔ Level 5 → Level 6 completed
 
-✔ Level 4 → Level 5 completed
